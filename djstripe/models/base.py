@@ -638,6 +638,12 @@ class StripeModel(StripeBaseModel):
 
         id_ = get_id_from_stripe_data(field)
 
+        # COMUNA18
+        if id_.startswith('py_'):
+            charge_id = data.get('originating_transaction')
+            id_ = charge_id
+        # COMUNA18
+
         if not field:
             # An empty field - We need to return nothing here because there is
             # no way of knowing what needs to be fetched!
